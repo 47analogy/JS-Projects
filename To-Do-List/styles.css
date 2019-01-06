@@ -1,0 +1,21 @@
+body {
+	background-color: rgb(20, 4, 20);
+}
+
+.container {
+	margin: auto;
+}
+
+.todo {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 30px;
+	width: 740px;
+	height: 470px;
+	background-color: gold;
+}
+
+.remove-btn {
+	margin-left: 15px;
+	color: red;
+}
