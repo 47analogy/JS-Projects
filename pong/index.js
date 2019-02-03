@@ -9,6 +9,12 @@ let ballY = 50; // y-position of ball
 let ballDirectionX = 15;
 let ballDirectionY = 15;
 
+// initial y-position of paddle
+let player1 = 250;
+
+// y-speed/direction of paddle (movement)
+let player1DirectionY = 20;
+
 // variable to set frame rate
 const framesPerSecond = 30;
 
@@ -22,11 +28,24 @@ const drawScreen = () => {
 	makeBall(ballX, ballY, 7);
 
 	// left paddle
-	ctx.fillStyle = 'white';
-	ctx.fillRect(50, 40, 15, 100);
+	leftPaddle(20, player1, 15, 100);
+
 	// right paddle
+	// ctx.fillStyle = 'white';
+	// ctx.fillRect(780, 150, 15, player2Paddle);
+};
+
+// update playing screen
+const updateScreen = () => {
+	setInterval(drawScreen, 1000 / framesPerSecond);
+	setInterval(moveball, 1500 / framesPerSecond);
+};
+
+// create left paddle
+// paddleY - important param to control up and down movement
+const leftPaddle = (paddleX, paddleY, paddleWidth, paddleHeight) => {
 	ctx.fillStyle = 'white';
-	ctx.fillRect(750, 150, 15, 100);
+	ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
 };
 
 // create playing ball
@@ -49,11 +68,23 @@ const moveball = () => {
 	if (ballY <= 0) ballDirectionY = -ballDirectionY;
 };
 
-// update playing screen
-const updateScreen = () => {
-	setInterval(drawScreen, 1000 / framesPerSecond);
-	setInterval(moveball, 1500 / framesPerSecond);
+// move left paddle by updating player1
+// A and Z control player 1 movement
+
+// TODO: keep paddle from moving off playing surface
+const leftPaddleCtrl = e => {
+	const moveUp = 65;
+	const moveDown = 90;
+
+	if (e.keyCode === moveUp) {
+		player1 = player1 - player1DirectionY;
+	}
+	if (e.keyCode === moveDown) {
+		player1 = player1 + player1DirectionY;
+	}
 };
 
+// event listeners
+document.addEventListener('keydown', leftPaddleCtrl);
 // function calls
 updateScreen();
