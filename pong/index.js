@@ -2,11 +2,12 @@
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
 
-// x-position of ball
-let ballX = 50;
+let ballX = 50; // x-position of ball
+let ballY = 50; // y-position of ball
 
 // x-speed/direction of ball (movement)
 let ballDirectionX = 15;
+let ballDirectionY = 15;
 
 // variable to set frame rate
 const framesPerSecond = 30;
@@ -18,7 +19,7 @@ const drawScreen = () => {
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	// ball
-	makeBall(ballX, 170, 7);
+	makeBall(ballX, ballY, 7);
 
 	// left paddle
 	ctx.fillStyle = 'white';
@@ -39,9 +40,13 @@ const makeBall = (xPos, yPos, size) => {
 // move the ball and change direction
 const moveball = () => {
 	ballX = ballX + ballDirectionX;
+	ballY = ballY + ballDirectionY;
+
 	// (- flips the direction)
 	if (ballX >= canvas.width) ballDirectionX = -ballDirectionX;
 	if (ballX <= 0) ballDirectionX = -ballDirectionX;
+	if (ballY >= canvas.height) ballDirectionY = -ballDirectionY;
+	if (ballY <= 0) ballDirectionY = -ballDirectionY;
 };
 
 // update playing screen
