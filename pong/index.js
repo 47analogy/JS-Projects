@@ -9,14 +9,16 @@ let ballX = 0; // x-position of ball
 let ballY = 0; // y-position of ball
 
 // speed/direction of ball (movement)
-let ballDirectionX = 15;
-let ballDirectionY = 15;
+let ballDirectionX = 10;
+let ballDirectionY = 10;
 
 // initial positions of paddle
 let player1 = 250;
 let player2 = 250;
 
 const _paddleHeight = 100;
+const _paddleThickness = 15;
+
 // y-speed/direction of paddle (movement)
 let player1DirectionY = 20;
 let player2DirectionY = 20;
@@ -36,10 +38,10 @@ const drawScreen = () => {
 	makeBall(ballX, ballY, 7);
 
 	// left paddle
-	leftPaddle(10, player1, 15, _paddleHeight);
+	leftPaddle(10, player1, _paddleThickness, _paddleHeight);
 
 	// right paddle
-	rightPaddle(780, player2, 15, _paddleHeight);
+	rightPaddle(780, player2, _paddleThickness, _paddleHeight);
 };
 
 // update playing screen
@@ -69,14 +71,33 @@ const makeBall = (xPos, yPos, size) => {
 	ctx.fill();
 };
 
+// reset ball to middle of screen
+const centerBall = () => {
+	ballX = canvas.width / 2;
+	ballDirectionX = -ballDirectionX;
+};
+
 // move the ball and change direction
 const moveball = () => {
 	ballX = ballX + ballDirectionX;
 	ballY = ballY + ballDirectionY;
 
-	// (- flips the direction)
-	if (ballX >= canvas.width) ballDirectionX = -ballDirectionX;
-	if (ballX <= 0) ballDirectionX = -ballDirectionX;
+	if (ballX >= canvas.width) {
+		if (ballY > player2 && ballY < player2 + _paddleHeight) {
+			ballDirectionX = -ballDirectionX; //return ball
+		} else {
+			centerBall(); //reset ball
+		}
+	}
+
+	if (ballX <= 0) {
+		if (ballY > player1 && ballY < player1 + _paddleHeight) {
+			ballDirectionX = -ballDirectionX;
+		} else {
+			centerBall();
+		}
+	}
+
 	if (ballY >= canvas.height) ballDirectionY = -ballDirectionY;
 	if (ballY <= 0) ballDirectionY = -ballDirectionY;
 };
