@@ -4,7 +4,6 @@ const ctx = canvas.getContext('2d');
 
 // globals
 
-// TODO: CENTER BALL ON SCREEN
 let ballX = 0; // x-position of ball
 let ballY = 0; // y-position of ball
 
@@ -26,6 +25,10 @@ let player2DirectionY = 20;
 // variable to set frame rate
 const framesPerSecond = 30;
 
+// score
+player1Score = 0;
+player2Score = 0;
+
 // end globals
 
 // draw initial playing screen
@@ -42,6 +45,12 @@ const drawScreen = () => {
 
 	// right paddle
 	rightPaddle(780, player2, _paddleThickness, _paddleHeight);
+
+	// scoreboard
+	ctx.fillStyle = 'white';
+	ctx.font = '20px Arial';
+	ctx.fillText(player1Score, 100, 50);
+	ctx.fillText(player2Score, 700, 50);
 };
 
 // update playing screen
@@ -82,19 +91,21 @@ const moveball = () => {
 	ballX = ballX + ballDirectionX;
 	ballY = ballY + ballDirectionY;
 
-	if (ballX >= canvas.width) {
+	if (ballX > canvas.width) {
 		if (ballY > player2 && ballY < player2 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX; //return ball
 		} else {
 			centerBall(); //reset ball
+			player1Score++;
 		}
 	}
 
-	if (ballX <= 0) {
+	if (ballX < 0) {
 		if (ballY > player1 && ballY < player1 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX;
 		} else {
 			centerBall();
+			player2Score++;
 		}
 	}
 
