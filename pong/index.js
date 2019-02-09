@@ -26,8 +26,10 @@ let player2DirectionY = 20;
 const framesPerSecond = 30;
 
 // score
-player1Score = 0;
-player2Score = 0;
+let player1Score = 0;
+let player2Score = 0;
+
+const winningScore = 5;
 
 // end globals
 
@@ -82,6 +84,18 @@ const makeBall = (xPos, yPos, size) => {
 
 // reset ball to middle of screen
 const centerBall = () => {
+	if (player1Score >= winningScore) {
+		alert('Player 1 Wins');
+		player1Score = 0;
+		player2Score = 0;
+		updateScreen();
+	}
+	if (player2Score >= winningScore) {
+		alert('Player 2 Wins');
+		player1Score = 0;
+		player2Score = 0;
+		updateScreen();
+	}
 	ballX = canvas.width / 2;
 	ballDirectionX = -ballDirectionX;
 };
@@ -95,8 +109,8 @@ const moveball = () => {
 		if (ballY > player2 && ballY < player2 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX; //return ball
 		} else {
+			player1Score++; // update score before reset ball
 			centerBall(); //reset ball
-			player1Score++;
 		}
 	}
 
@@ -104,8 +118,8 @@ const moveball = () => {
 		if (ballY > player1 && ballY < player1 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX;
 		} else {
-			centerBall();
 			player2Score++;
+			centerBall();
 		}
 	}
 
