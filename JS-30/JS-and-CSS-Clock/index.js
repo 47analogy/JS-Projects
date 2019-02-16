@@ -8,11 +8,12 @@ function operateClock () {
   const secondsTime = time.getSeconds()
   const minutesTime = time.getMinutes()
   const hoursTime = time.getHours()
+  console.log(hoursTime)
 
   // convert time to degrees
   const secondsDegrees = (secondsTime / 60) * 360 + 90
   const minutesDegrees = (minutesTime / 60) * 360 + 90
-  const hoursDegrees = hoursTime
+  const hoursDegrees = hoursTime / 12
 
   secondHand.style.transform = `rotate(${secondsDegrees}deg)`
   minutesHand.style.transform = `rotate(${minutesDegrees}deg)`
