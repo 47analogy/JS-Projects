@@ -1,6 +1,6 @@
 // create game canvas
-const canvas = document.querySelector('#game-canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.querySelector("#game-canvas");
+const ctx = canvas.getContext("2d");
 
 // globals
 
@@ -33,11 +33,21 @@ const winningScore = 5;
 
 // end globals
 
+// draw net on screen
+const drawNet = () => {
+	for (let i = 0; i < canvas.height; i += 40) {
+		ctx.fillStyle = "white";
+		ctx.fillRect(canvas.width / 2 - 1, i, 2, 20);
+	}
+};
 // draw initial playing screen
 const drawScreen = () => {
 	// playing field
-	ctx.fillStyle = 'black';
+	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	// net
+	drawNet();
 
 	// ball
 	makeBall(ballX, ballY, 7);
@@ -49,8 +59,8 @@ const drawScreen = () => {
 	rightPaddle(780, player2, _paddleThickness, _paddleHeight);
 
 	// scoreboard
-	ctx.fillStyle = 'white';
-	ctx.font = '20px Arial';
+	ctx.fillStyle = "white";
+	ctx.font = "20px Arial";
 	ctx.fillText(player1Score, 100, 50);
 	ctx.fillText(player2Score, 700, 50);
 };
@@ -64,19 +74,19 @@ const updateScreen = () => {
 // create left paddle
 // paddleY - important param to control up and down movement
 const leftPaddle = (paddleX, paddleY, paddleWidth, paddleHeight) => {
-	ctx.fillStyle = 'white';
+	ctx.fillStyle = "white";
 	ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
 };
 
 // create right paddle
 const rightPaddle = (paddleX, paddleY, paddleWidth, paddleHeight) => {
-	ctx.fillStyle = 'white';
+	ctx.fillStyle = "white";
 	ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
 };
 
 // create playing ball
 const makeBall = (xPos, yPos, size) => {
-	ctx.fillStyle = 'white';
+	ctx.fillStyle = "white";
 	ctx.beginPath();
 	ctx.arc(xPos, yPos, size, 0, 2 * Math.PI, false);
 	ctx.fill();
@@ -84,18 +94,18 @@ const makeBall = (xPos, yPos, size) => {
 
 // reset ball to middle of screen
 const centerBall = () => {
-	if (player1Score >= winningScore) {
-		alert('Player 1 Wins');
+	if (player1Score === winningScore) {
+		alert("Player 1 Wins");
 		player1Score = 0;
 		player2Score = 0;
-		updateScreen();
-	}
-	if (player2Score >= winningScore) {
-		alert('Player 2 Wins');
+		//updateScreen(); RESTART GAME
+	} else if (player2Score === winningScore) {
+		alert("Player 2 Wins");
 		player1Score = 0;
 		player2Score = 0;
-		updateScreen();
+		//updateScreen(); RESTART GAME
 	}
+
 	ballX = canvas.width / 2;
 	ballDirectionX = -ballDirectionX;
 };
@@ -108,6 +118,9 @@ const moveball = () => {
 	if (ballX > canvas.width) {
 		if (ballY > player2 && ballY < player2 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX; //return ball
+
+			let deltaY = ballY - (player2 + _paddleHeight / 2);
+			ballY = deltaY * 0.35;
 		} else {
 			player1Score++; // update score before reset ball
 			centerBall(); //reset ball
@@ -117,6 +130,9 @@ const moveball = () => {
 	if (ballX < 0) {
 		if (ballY > player1 && ballY < player1 + _paddleHeight) {
 			ballDirectionX = -ballDirectionX;
+
+			let deltaY = ballY - (player1 + _paddleHeight / 2);
+			ballY = deltaY * 0.35;
 		} else {
 			player2Score++;
 			centerBall();
@@ -155,7 +171,7 @@ const PaddleCtrl = e => {
 };
 
 // event listeners
-document.addEventListener('keydown', PaddleCtrl);
+document.addEventListener("keydown", PaddleCtrl);
 
 // function calls
 updateScreen();
