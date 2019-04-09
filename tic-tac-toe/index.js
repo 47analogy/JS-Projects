@@ -9,16 +9,13 @@ class TicTacToe {
 	};
 
 	// update the game board
-	displayPlayerMove = playerIndex => {
-		if (this.board[playerIndex] === ' ') {
-			this.board[playerIndex] = this.currentPlayer;
+	displayPlayerMove = boardIndex => {
+		if (this.board[boardIndex] === '') {
+			this.board[boardIndex] = this.currentPlayer;
 			// alternate players
-			if ((this.currentPlayer = player1)) {
-				this.currentPlayer = player2;
-			} else {
-				this.currentPlayer = player1;
-			}
-			console.log(this.board);
+			this.currentPlayer = this.currentPlayer === player1 ? player2 : player1;
+			//console.log(this.currentPlayer);
+			//console.log(this.board);
 			this.updateBoard();
 		}
 	};
@@ -55,7 +52,7 @@ class TicTacToe {
 
 	// start new game
 	start() {
-		this.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+		this.board = ['', '', '', '', '', '', '', '', ''];
 		this.currentPlayer = player1; // set player1 to play first;
 		this.drawBoard(); // draw board
 	}
