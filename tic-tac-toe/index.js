@@ -12,11 +12,19 @@ class TicTacToe {
 	displayPlayerMove = boardIndex => {
 		if (this.board[boardIndex] === '') {
 			this.board[boardIndex] = this.currentPlayer;
-			// alternate players
-			this.currentPlayer = this.currentPlayer === player1 ? player2 : player1;
-			//console.log(this.currentPlayer);
-			//console.log(this.board);
 			this.updateBoard();
+
+			// check if there's a winner before alternating player
+			if (!this.determineWinner()) {
+				// alternate players
+				this.currentPlayer = this.currentPlayer === player1 ? player2 : player1;
+				//console.log(this.currentPlayer);
+				//console.log(this.board);
+			} else {
+				// announce winner and restart game
+				alert('Player ' + this.currentPlayer + ' is the winner!');
+				this.start();
+			}
 		}
 	};
 
@@ -28,6 +36,33 @@ class TicTacToe {
 		gameSquares.forEach((square, index) => {
 			if (square.innerText !== this.board[index]) {
 				square.innerText = this.board[index];
+			}
+		});
+	}
+
+	determineWinner() {
+		// using array position to determine winning combinations
+		const winner = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6]
+		];
+		return winner.find(combo => {
+			if (
+				this.board[combo[0]] !== '' &&
+				this.board[combo[1]] !== '' &&
+				this.board[combo[2]] !== '' &&
+				this.board[combo[0]] === this.board[combo[1]] &&
+				this.board[combo[1]] === this.board[combo[2]]
+			) {
+				return true;
+			} else {
+				return false;
 			}
 		});
 	}
