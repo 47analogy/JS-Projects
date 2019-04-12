@@ -10,6 +10,7 @@ class TicTacToe {
 
 	// update the game board
 	displayPlayerMove = boardIndex => {
+		// square is empty
 		if (this.board[boardIndex] === '') {
 			this.board[boardIndex] = this.currentPlayer;
 			this.updateBoard();
@@ -41,7 +42,7 @@ class TicTacToe {
 	}
 
 	determineWinner() {
-		// using array position to determine winning combinations
+		// using array position to define winning combinations
 		const winner = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -69,7 +70,7 @@ class TicTacToe {
 
 	// draw board on screen
 	drawBoard() {
-		document.body.innerHTML = '';
+		document.body.innerHTML = ''; // clear screen
 		let gameBoard = document.createElement('div');
 		gameBoard.id = 'gameBoard';
 		gameBoard.classList.add('board');
@@ -82,12 +83,12 @@ class TicTacToe {
 			squareElement.classList.add('square');
 			gameBoard.appendChild(squareElement);
 		});
-		document.body.appendChild(gameBoard);
+		document.body.appendChild(gameBoard); // add board to DOM
 	}
 
-	// start new game
+	// starts new game
 	start() {
-		this.board = ['', '', '', '', '', '', '', '', ''];
+		this.board = ['', '', '', '', '', '', '', '', '']; // initialize board and track moves
 		this.currentPlayer = player1; // set player1 to play first;
 		this.drawBoard(); // draw board
 	}
