@@ -14,11 +14,11 @@ Collection of small projects and mini-apps to demonstrate different coding conce
 
 [Link to project](https://github.com/47analogy/JS-Projects/tree/master/Shopping-Cart)
 
-### Pong- Clone of the classic Atari game
+### Pong - Clone of the classic Atari game
 
 [Link to project](https://github.com/47analogy/JS-Projects/tree/master/pong)
 
-### Tic Tac Toe- Two player version of the classic game
+### Tic Tac Toe - Two player version of the classic game
 
 [Link to project](https://github.com/47analogy/JS-Projects/tree/master/tic-tac-toe)
 
@@ -26,11 +26,11 @@ Collection of small projects and mini-apps to demonstrate different coding conce
 
 [Link to project](https://github.com/47analogy/JS-Projects/tree/master/random-answer-generator)
 
-### Coin Toss- Simulate a random coss flip
+### Coin Toss - Simulate a random coss flip
 
 [Link to project](https://github.com/47analogy/JS-Projects/tree/master/coin-toss)
 
-### JavaScript 30, - Wes Bos course on building things with vanilla JavaScript (_in progress_)
+### JavaScript 30 - Wes Bos course on building things with vanilla JavaScript (_in progress_)
 
 [Link to course](https://javascript30.com/)
 
