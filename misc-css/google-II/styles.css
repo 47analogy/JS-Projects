@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -75,7 +75,7 @@ footer,
 header,
 hgroup,
 menu,
-nav,
+header,
 output,
 ruby,
 section,
@@ -101,7 +101,7 @@ footer,
 header,
 hgroup,
 menu,
-nav,
+header,
 section {
 	display: block;
 }
@@ -128,31 +128,36 @@ table {
 	border-spacing: 0;
 }
 
-/* navigation */
-nav {
-	margin: 25px 10px;
+/* start-header */
+header {
+	padding: 20px 40px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	font-family: arial, sans-serif;
 	font-size: 13px;
 }
 
-nav ul {
+header ul {
 	display: flex;
+	align-items: center;
 	list-style: none;
 }
 
-nav li {
+header li {
 	margin-right: 15px;
 }
 
 ul li img {
 	width: 17px;
-	height: 17px;
 }
 
-#avatar-image {
+#avatar {
 	margin: 0;
-	height: 30px;
 	width: 30px;
+	height: 30px;
+	background-image: url('./assets/avatar.png');
+	background-size: cover;
+	border-radius: 50%;
 }
+/* end-header */
