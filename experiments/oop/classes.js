@@ -5,8 +5,8 @@ Inheritance - inheriting features from other (parent) objects so that code can b
 
 // encapsulate all functionality for a baseball player
 class BaseballPlayer {
-  constructor(typeOfTree, position, team) {
-    this.name = typeOfTree;
+  constructor(name, position, team) {
+    this.name = name;
     this.team = team;
     this.position = position;
     this.homersLast3Years = [];
@@ -44,9 +44,24 @@ console.log(gardner.getAvgHomers());
 
 // inherits from the BaseballPlayer class
 class BaseballPlayerTrivia extends BaseballPlayer {
-  // overriding this method in the parent class
+  constructor(name, team, position) {
+    super(name, team, position);
+  }
+  // overriding this method from the parent class
   playerInfo() {
     return `${this.name}`;
+  }
+
+  fullPlayerInfo() {
+    return `${super.playerInfo()}`; // calls playerInfo() from parent class
+  }
+
+  showFavFood(favFood) {
+    return `${this.playerInfo()}'s favorite food is ${favFood}`;
+  }
+
+  showCollege(collegeName) {
+    return `${this.playerInfo()} played college baseball at ${collegeName}`;
   }
 }
 
@@ -57,3 +72,6 @@ judge.addPlayerHomers(58);
 
 console.log(judge.playerInfo());
 console.log(judge.getAvgHomers());
+console.log(judge.showFavFood("pizza"));
+console.log(judge.showCollege("Fresno State"));
+console.log(judge.fullPlayerInfo());
