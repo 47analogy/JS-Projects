@@ -1,0 +1,9 @@
+.todo-item-priority {
+  font-weight: bold;
+  line-height: 2;
+}
+
+.todo-list,
+.done-list {
+  line-height: 2;
+}
