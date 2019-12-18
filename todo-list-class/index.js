@@ -2,7 +2,6 @@ class TodoList {
   constructor() {
     this.todo = [];
     this.done = [];
-    this.priority = [];
   }
 
   addTodo() {
@@ -10,18 +9,23 @@ class TodoList {
     const priorityBox = document.querySelector("#check-box");
 
     if (priorityBox.checked) {
-      this.rankTodo(this.priority, todoInput.value);
+      let prio = true;
+      this.rankTodo(todoInput.value, prio);
       todoInput.value = "";
       priorityBox.checked = false;
     } else {
-      this.rankTodo(this.todo, todoInput.value);
+      this.rankTodo(todoInput.value);
       todoInput.value = "";
     }
   }
 
-  rankTodo(todoRank, value) {
-    todoRank.push(value);
-    this.displayTodoList(todoRank);
+  rankTodo(value, important) {
+    const todoItem = {};
+
+    todoItem.itemName = value;
+    important ? (todoItem.priority = true) : (todoItem.priority = false);
+    this.todo.push(todoItem);
+    this.displayTodoList(this.todo);
   }
 
   moveItems(listType, itemIndex) {
@@ -55,19 +59,20 @@ class TodoList {
     // display various list types
     if (listType === this.todo) {
       listType.map(item => {
-        todoListLI.textContent = item;
-        todoList.appendChild(todoListLI);
+        todoListLI.textContent = item.itemName;
+        if (item.priority) {
+          todoListLI.className = "todo-item-priority";
+          todoList.prepend(todoListLI);
+        } else {
+          todoListLI.className = "todo-item";
+          todoList.appendChild(todoListLI);
+        }
       });
-    } else if (listType === this.priority) {
+    }
+
+    if (listType === this.done) {
       listType.map(item => {
-        this.todo.push(item);
-        todoListLI.className = "todo-item-priority";
-        todoListLI.textContent = item;
-        todoList.prepend(todoListLI);
-      });
-    } else {
-      listType.map(item => {
-        doneListLI.textContent = item;
+        doneListLI.textContent = item.itemName;
         doneList.appendChild(doneListLI);
       });
     }
@@ -75,7 +80,7 @@ class TodoList {
     // add listener to each list
     todoListLI.addEventListener("click", event => {
       // grab target element
-      if (event.target && event.target.nodeName == "LI") {
+      if (event.target && event.target.nodeName === "LI") {
         let removeItem = this.todo.indexOf(event.target.textContent);
         this.moveItems("todoList", removeItem);
         event.target.parentNode.removeChild(event.target);
@@ -83,7 +88,7 @@ class TodoList {
     });
 
     doneListLI.addEventListener("click", event => {
-      if (event.target && event.target.nodeName == "LI") {
+      if (event.target && event.target.nodeName === "LI") {
         let removeItem = this.done.indexOf(event.target.textContent);
         this.moveItems("doneList", removeItem);
         event.target.parentNode.removeChild(event.target);
