@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  .errandBtn {
+    width: 200px;
+    height: 80px;
+    margin: 10px;
+  }
+  
+  #app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .buttonWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  div.line {
+    margin: 20px;
+  }
+  

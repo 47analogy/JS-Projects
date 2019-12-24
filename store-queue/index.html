@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store Queue</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>Welcome to Best Buy</h2>
+      <p>Grab a ticket for your errand</p>
+
+      <div class="buttonWrapper">
+        <button class="errandBtn" id="pickup">Pick up order</button>
+        <button class="errandBtn" id="question">
+          Ask a question about a product
+        </button>
+        <button class="errandBtn" id="return">Return a faulty product</button>
+      </div>
+
+      <h3>Currently serving</h3>
+      <p id="serving"></p>
+      <button id="next">Next</button>
+      <div class="line">
+        <span>Line:</span>
+        <span id="line"></span>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
