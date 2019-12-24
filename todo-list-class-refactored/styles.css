@@ -1,0 +1,7 @@
+li.done-list{
+    text-decoration: line-through;
+}
+
+li.priority {
+    font-weight: bold;
+}
