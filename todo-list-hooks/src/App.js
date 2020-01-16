@@ -1,14 +1,16 @@
-import React from "react";
-import "./App.css";
-import List from "./components/List";
+import React from 'react';
+import './App.css';
+import List from './components/List';
 
 const initialItems = [
-  { title: "Do laundry", prio: false },
-  { title: "Read a book", prio: true }
+  { title: 'Do laundry', prio: false },
+  { title: 'Read a book', prio: true },
 ];
 export default function App() {
   const [todoItems, setTodoItems] = React.useState(initialItems);
   const [doneItems, setDoneItems] = React.useState([]);
+  const [addTodo, setAddTodo] = React.useState('');
+  const [priority, setPriority] = React.useState(false);
 
   const onClickTodoItem = item => {
     // remove item with title from todoList
@@ -26,14 +28,32 @@ export default function App() {
   };
   return (
     <>
-      <input placeholder="New item" />
-      <button>Add</button>
-      <span>
-        <input type="checkbox" />
-        Prio
-      </span>
-      <List title="Todo" items={todoItems} onClickItem={onClickTodoItem} />
-      <List title="Done" items={doneItems} onClickItem={onClickDoneItem} />
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          setTodoItems([...todoItems, { title: addTodo, prio: priority }]);
+        }}
+      >
+        <input
+          type='text'
+          name='new-todo'
+          value={addTodo}
+          placeholder='New item'
+          onChange={event => setAddTodo(event.target.value)}
+        />
+        <button>Add</button>
+        <span>
+          <input
+            type='checkbox'
+            name='prio'
+            priority={priority}
+            onClick={() => setPriority(!priority)}
+          />
+          Prio
+        </span>
+      </form>
+      <List title='Todo' items={todoItems} onClickItem={onClickTodoItem} />
+      <List title='Done' items={doneItems} onClickItem={onClickDoneItem} />
     </>
   );
 }
