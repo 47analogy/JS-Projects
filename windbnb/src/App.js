@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-
+import PropertyList from './components/PropertyList'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        Away We Go!!
+        <PropertyList />
       </header>
     </div>
   );
