@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "4dc3f9350ba66861588a";
+/******/ 	var hotCurrentHash = "6d97103b15efd6b73c1d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5283,7 +5283,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @aws-amplify/api */ \"./node_modules/@aws-amplify/api/lib-esm/index.js\");\n/* harmony import */ var _aws_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./aws-exports */ \"./src/aws-exports.js\");\n/* harmony import */ var _graphql_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./graphql/mutations */ \"./src/graphql/mutations.js\");\n//const { default: Amplify } = require(\"aws-amplify\")\n\n\n\n\n_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"default\"].configure(_aws_exports__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n\nasync function createNewTodo() {\n    const todo = {\n        name: \"Rock AWS\",\n        description: \"Become an expert\"\n    }\n    return await _aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"API\"].graphql(Object(_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"graphqlOperation\"])(_graphql_mutations__WEBPACK_IMPORTED_MODULE_2__[\"createTodo\"], {input: todo}))\n}\n\nconst MutationButton = document.querySelector('#MutationEventButton')\nconst MutationResult = document.querySelector('#MutationResult')\n\nMutationButton.addEventListener('click', (event) => {\n    createNewTodo().then((event) => {\n    MutationResult.innerHTML += `<p>${event.data.createTodo.name} - ${event.data.createTodo.description}</p>`\n    })\n})\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @aws-amplify/api */ \"./node_modules/@aws-amplify/api/lib-esm/index.js\");\n/* harmony import */ var _aws_exports__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./aws-exports */ \"./src/aws-exports.js\");\n/* harmony import */ var _graphql_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./graphql/mutations */ \"./src/graphql/mutations.js\");\n/* harmony import */ var _graphql_queries__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./graphql/queries */ \"./src/graphql/queries.js\");\n/* harmony import */ var _graphql_subscriptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./graphql/subscriptions */ \"./src/graphql/subscriptions.js\");\n//const { default: Amplify } = require(\"aws-amplify\")\n\n\n\n\n\n\n_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"default\"].configure(_aws_exports__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\n\n\nasync function createNewTodo() {\n    const todo = {\n        name: \"Rock AWS\",\n        description: \"Become an expert\"\n    }\n    return await _aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"API\"].graphql(Object(_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"graphqlOperation\"])(_graphql_mutations__WEBPACK_IMPORTED_MODULE_2__[\"createTodo\"], {input: todo}))\n}\n\nasync function getData() {\n    _aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"API\"].graphql(Object(_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"graphqlOperation\"])(_graphql_queries__WEBPACK_IMPORTED_MODULE_3__[\"listTodos\"])).then((event) => {\n        console.log(\"event\", event)\n        event.data.listTodos.items.map((todo, i) => {\n            QueryResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`\n        })\n    })\n}\n\nconst MutationButton = document.querySelector('#MutationEventButton')\nconst MutationResult = document.querySelector('#MutationResult')\nconst QueryResult = document.querySelector('#QueryResult')\n\nMutationButton.addEventListener('click', (event) => {\n    createNewTodo().then((event) => {\n    MutationResult.innerHTML += `<p>${event.data.createTodo.name} - ${event.data.createTodo.description}</p>`\n    })\n})\n\n_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"API\"].graphql(Object(_aws_amplify_api__WEBPACK_IMPORTED_MODULE_0__[\"graphqlOperation\"])(_graphql_subscriptions__WEBPACK_IMPORTED_MODULE_4__[\"onCreateTodo\"])).subscribe({\n    next: (event) => {\n        const todo = event.value.data.onCreateTodo\n        SubscriptionResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`\n    }\n})\n\n\ngetData()\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ }),
 
@@ -5308,6 +5308,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable */\n// WARN
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createTodo\", function() { return createTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"updateTodo\", function() { return updateTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteTodo\", function() { return deleteTodo; });\n/* eslint-disable */\n// this is an auto generated file. This will be overwritten\n\nconst createTodo = /* GraphQL */ `\n  mutation CreateTodo(\n    $input: CreateTodoInput!\n    $condition: ModelTodoConditionInput\n  ) {\n    createTodo(input: $input, condition: $condition) {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\nconst updateTodo = /* GraphQL */ `\n  mutation UpdateTodo(\n    $input: UpdateTodoInput!\n    $condition: ModelTodoConditionInput\n  ) {\n    updateTodo(input: $input, condition: $condition) {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\nconst deleteTodo = /* GraphQL */ `\n  mutation DeleteTodo(\n    $input: DeleteTodoInput!\n    $condition: ModelTodoConditionInput\n  ) {\n    deleteTodo(input: $input, condition: $condition) {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\n\n\n//# sourceURL=webpack:///./src/graphql/mutations.js?");
+
+/***/ }),
+
+/***/ "./src/graphql/queries.js":
+/*!********************************!*\
+  !*** ./src/graphql/queries.js ***!
+  \********************************/
+/*! exports provided: getTodo, listTodos */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getTodo\", function() { return getTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"listTodos\", function() { return listTodos; });\n/* eslint-disable */\n// this is an auto generated file. This will be overwritten\n\nconst getTodo = /* GraphQL */ `\n  query GetTodo($id: ID!) {\n    getTodo(id: $id) {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\nconst listTodos = /* GraphQL */ `\n  query ListTodos(\n    $filter: ModelTodoFilterInput\n    $limit: Int\n    $nextToken: String\n  ) {\n    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {\n      items {\n        id\n        name\n        description\n        createdAt\n        updatedAt\n      }\n      nextToken\n    }\n  }\n`;\n\n\n//# sourceURL=webpack:///./src/graphql/queries.js?");
+
+/***/ }),
+
+/***/ "./src/graphql/subscriptions.js":
+/*!**************************************!*\
+  !*** ./src/graphql/subscriptions.js ***!
+  \**************************************/
+/*! exports provided: onCreateTodo, onUpdateTodo, onDeleteTodo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onCreateTodo\", function() { return onCreateTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onUpdateTodo\", function() { return onUpdateTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onDeleteTodo\", function() { return onDeleteTodo; });\n/* eslint-disable */\n// this is an auto generated file. This will be overwritten\n\nconst onCreateTodo = /* GraphQL */ `\n  subscription OnCreateTodo {\n    onCreateTodo {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\nconst onUpdateTodo = /* GraphQL */ `\n  subscription OnUpdateTodo {\n    onUpdateTodo {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\nconst onDeleteTodo = /* GraphQL */ `\n  subscription OnDeleteTodo {\n    onDeleteTodo {\n      id\n      name\n      description\n      createdAt\n      updatedAt\n    }\n  }\n`;\n\n\n//# sourceURL=webpack:///./src/graphql/subscriptions.js?");
 
 /***/ })
 
