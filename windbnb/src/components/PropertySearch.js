@@ -7,7 +7,7 @@ const customStyles = {
     }
   };
 
-const PropertySearch = () => {
+const PropertySearch = ({onSearchChange, inputSearchGuests}) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleOpenModal = () => {
@@ -20,14 +20,22 @@ const PropertySearch = () => {
 
     return ( 
         <div>
-        <button onClick={handleOpenModal}>Trigger Modal</button>
+        <button onClick={handleOpenModal}>Open Search Modal</button>
         <Modal 
            isOpen={showModal}
            style={customStyles}
-            >  
-          <button onClick={handleCloseModal}>Close Modal</button>
+            ariaHideApp={false}
+        >  
+          <button onClick={handleCloseModal}>Close Search Modal</button>
           <div>Filter location</div>
-          <div>Search # of guests allowed</div>
+                <div>
+                    <label htmlFor="search">Search</label>
+                    <input
+                        type="text"
+                        placeholder="Number of guests"
+                        onChange={onSearchChange}
+                        value={inputSearchGuests} />
+                </div>
         </Modal>
       </div>
      );

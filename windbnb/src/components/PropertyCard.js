@@ -124,7 +124,7 @@ const Title = styled.div`
 
     
 const PropertyCard = ({ properties }) => {
-    console.log("card", properties)
+    // console.log("card", properties)
     return (
           <Container> 
                 {properties ? properties.map((property) => <Card key={property.id}>
