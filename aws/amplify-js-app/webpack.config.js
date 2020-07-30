@@ -5,7 +5,14 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, "/src/index.js"),
+    //entry: path.join(__dirname, "/src/index.js"),
+    entry: {
+        app: [
+          'react-app-polyfill/ie9', // Only if you want to support IE 9
+          'react-app-polyfill/stable',
+          './src/index.js',
+        ],
+      },
     output: {
         filename: "build.js",
         path: path.join(__dirname, "/dist"),
