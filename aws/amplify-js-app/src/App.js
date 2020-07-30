@@ -10,7 +10,8 @@ Amplify.configure(awsconfig)
 import "./App.css";
 
 const App = () => {
-  const [todos, setTodos] = useState('')
+  const [addTodo, setAddTodo] = React.useState('');
+  const [todos, setTodos] = useState([])
 
   useEffect(() => {
     getData()
@@ -25,13 +26,31 @@ const App = () => {
   
 
   return (
-    <div className="App">{todos ? todos.map(todo => {
-      return (
-        <ul key={todo.id}>
-          <li>{todo.name} - {todo.description}</li>
-        </ul>
-      )
-   }) : null}
+    <div className="App">
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          console.log("Submitted todo =>", addTodo)
+        }}
+      >
+        <input
+          type='text'
+          name='new-todo'
+          value={addTodo}
+          placeholder='New item'
+          onChange={event => setAddTodo(event.target.value)}
+        />
+        <button>Add</button>
+      </form>
+      <div>
+        {todos ? todos.map(todo => {
+          return (
+            <ul key={todo.id}>
+              <li>{todo.name} - {todo.description}</li>
+            </ul>
+          )
+       }) : null}
+      </div>  
    </div>
   )
 };
