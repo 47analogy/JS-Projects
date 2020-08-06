@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Amplify JavaScript Example",
   "dependencies": {
+    "@aws-amplify/ui-react": "^0.2.13",
+    "aws-amplify": "^3.0.22",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "@aws-amplify/ui-react": "^0.2.11",
-    "aws-amplify": "^3.0.20"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

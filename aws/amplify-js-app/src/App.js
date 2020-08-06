@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import Amplify, { Auth, API, graphqlOperation } from '@aws-amplify/api'
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
 import awsconfig from './aws-exports'
 import { createTodo } from './graphql/mutations'
 import { listTodos } from './graphql/queries'
 import { onCreateTodo } from './graphql/subscriptions'
 //import regeneratorRuntime from "regenerator-runtime"
-
 Amplify.configure(awsconfig)
-import "./App.css";
+import "./App.css"
+
+
 
 const App = () => {
   const [addTodo, setAddTodo] = React.useState('');
@@ -55,4 +57,4 @@ const App = () => {
   )
 };
 
-export default App;
+export default withAuthenticator(App);
