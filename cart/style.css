@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+  }
+  
+  h1 {
+    padding-left: 40px;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px;
+  }
+  
+  .cards-grid-item {
+    padding: 10px 20px 30px;
+    border: 2px solid #eee;
+    border-radius: 4px;
+  }
+  
+  .cart-list {
+    margin-top: 50px;
+  }
