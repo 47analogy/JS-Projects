@@ -42,6 +42,7 @@ const PropertyList = () => {
             <PropertySearch
                 onSearchChange={onSearchChange}
                 inputSearchGuests={inputSearchGuests}
+                properties={properties}
             />
             <h1>Stays in Finland</h1>
             <PropertyCard properties={filteredGuestProperties} />

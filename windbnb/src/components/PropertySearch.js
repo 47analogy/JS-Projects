@@ -7,8 +7,10 @@ const customStyles = {
     }
   };
 
-const PropertySearch = ({onSearchChange, inputSearchGuests}) => {
+const PropertySearch = ({onSearchChange, inputSearchGuests, properties}) => {
     const [showModal, setShowModal] = useState(false)
+    const [listOpen, setListOpen] = useState(false)
+
 
     const handleOpenModal = () => {
         setShowModal(true)
@@ -17,6 +19,11 @@ const PropertySearch = ({onSearchChange, inputSearchGuests}) => {
     const handleCloseModal = () => {
         setShowModal(false)
     }
+    
+    const toggleList = () => {
+        setListOpen(!listOpen)
+    }
+
 
     return ( 
         <div>
@@ -27,15 +34,21 @@ const PropertySearch = ({onSearchChange, inputSearchGuests}) => {
             ariaHideApp={false}
         >  
           <button onClick={handleCloseModal}>Close Search Modal</button>
-          <div>Filter location</div>
-                <div>
+                <div onClick={toggleList}>
+                <label for="cities">Choose a City:</label>
+                        {listOpen && <select className="dd-list">
+                            {properties.map((property) => (   
+                                <option className="dd-list-item" key={property.id} value={property.city}>{property.city}</option>
+                            ))}
+                    </select>} 
+
                     <label htmlFor="search">Search</label>
                     <input
                         type="text"
                         placeholder="Number of guests"
                         onChange={onSearchChange}
                         value={inputSearchGuests} />
-                </div>
+               </div>    
         </Modal>
       </div>
      );
@@ -43,8 +56,3 @@ const PropertySearch = ({onSearchChange, inputSearchGuests}) => {
  
 export default PropertySearch;
 
-/*
-need dropdown filter that displays all locations (city/country)
-need search box for # of guests
-when user click on number of guests (display all properties that fit the criteria)
-*/
