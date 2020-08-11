@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -10,7 +10,7 @@ const customStyles = {
 const PropertySearch = ({onSearchChange, inputSearchGuests, properties}) => {
     const [showModal, setShowModal] = useState(false)
     const [listOpen, setListOpen] = useState(false)
-
+   
 
     const handleOpenModal = () => {
         setShowModal(true)
@@ -35,19 +35,23 @@ const PropertySearch = ({onSearchChange, inputSearchGuests, properties}) => {
         >  
           <button onClick={handleCloseModal}>Close Search Modal</button>
                 <div onClick={toggleList}>
-                <label for="cities">Choose a City:</label>
+                    <div>
+                        <label for="cities">Choose a City:</label>
                         {listOpen && <select className="dd-list">
-                            {properties.map((property) => (   
-                                <option className="dd-list-item" key={property.id} value={property.city}>{property.city}</option>
+                            {/* set gives array of cities without dupes */}
+                            {[...new Set(properties.map(property => property.city))].map((city) => (
+                                <option className="dd-list-item" value={city}>{city}</option>
                             ))}
-                    </select>} 
-
-                    <label htmlFor="search">Search</label>
-                    <input
-                        type="text"
-                        placeholder="Number of guests"
-                        onChange={onSearchChange}
-                        value={inputSearchGuests} />
+                        </select>} 
+                    </div>
+                    <div>
+                        <label htmlFor="search">Search</label>
+                        <input
+                            type="text"
+                            placeholder="Number of guests"
+                            onChange={onSearchChange}
+                            value={inputSearchGuests} />
+                    </div> 
                </div>    
         </Modal>
       </div>
